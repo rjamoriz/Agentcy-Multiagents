@@ -4,6 +4,8 @@
 import logging
 from uuid import uuid4
 
+from ioa_observe.sdk.tracing import session_start
+
 from a2a.server.agent_execution import AgentExecutor, RequestContext
 from a2a.server.events import EventQueue
 from a2a.utils.errors import ServerError
@@ -62,6 +64,7 @@ class FarmAgentExecutor(AgentExecutor):
             context: Request context containing the incoming Message, Task (if any), and metadata.
             event_queue: Event queue used to publish resulting events.
         """
+        session_start()
 
         logger.debug("Received message request: %s", context.message)
 

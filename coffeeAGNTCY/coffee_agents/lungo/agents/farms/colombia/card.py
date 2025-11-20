@@ -21,7 +21,7 @@ AGENT_SKILL = AgentSkill(
 
 AGENT_CARD = AgentCard(
     name='Colombia Coffee Farm',
-    id='colombia-farm-agent',
+    id='colombia_farm_agent',
     description='An AI agent that returns the yield of coffee beans in pounds for the Colombia farm.',
     url='',
     version='1.0.0',

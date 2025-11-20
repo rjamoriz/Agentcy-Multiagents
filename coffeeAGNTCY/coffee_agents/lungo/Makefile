@@ -27,7 +27,9 @@ logistic-supervisor:
 
 .PHONY: auction-supervisor
 auction-supervisor:
-	$(UV) agents/supervisors/auction/main.py
+	PYTHONPATH="/Users/Ruben_MACPRO/Desktop/IA DevOps/AGENTCY Sandbox/coffeeAgntcy/coffeeAGNTCY/coffee_agents/lungo" uv run agents/supervisors/auction/main.py
+	
+	# Ensure PYTHONPATH is quoted to handle spaces
 
 .PHONY: shipper
 shipper:
@@ -43,19 +45,19 @@ logistic-farm:
 
 .PHONY: brazil-farm
 brazil-farm:
-	$(UV) agents/farms/brazil/farm_server.py
+	PYTHONPATH="/Users/Ruben_MACPRO/Desktop/IA DevOps/AGENTCY Sandbox/coffeeAgntcy/coffeeAGNTCY/coffee_agents/lungo" uv run agents/farms/brazil/farm_server.py
 
 .PHONY: colombia-farm
 colombia-farm:
-	$(UV) agents/farms/colombia/farm_server.py
+	PYTHONPATH="/Users/Ruben_MACPRO/Desktop/IA DevOps/AGENTCY Sandbox/coffeeAgntcy/coffeeAGNTCY/coffee_agents/lungo" uv run agents/farms/colombia/farm_server.py
 
 .PHONY: vietnam-farm
 vietnam-farm:
-	$(UV) agents/farms/vietnam/farm_server.py
+	PYTHONPATH="/Users/Ruben_MACPRO/Desktop/IA DevOps/AGENTCY Sandbox/coffeeAgntcy/coffeeAGNTCY/coffee_agents/lungo" uv run agents/farms/vietnam/farm_server.py
 
 .PHONY: weather-mcp
 weather-mcp:
-	$(UV) agents/mcp_servers/weather_service.py
+	PYTHONPATH="/Users/Ruben_MACPRO/Desktop/IA DevOps/AGENTCY Sandbox/coffeeAgntcy/coffeeAGNTCY/coffee_agents/lungo" uv run agents/mcp_servers/weather_service.py
 
 .PHONY: payment-mcp
 payment-mcp:

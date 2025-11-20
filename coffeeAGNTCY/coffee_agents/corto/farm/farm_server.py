@@ -13,6 +13,10 @@ from agntcy_app_sdk.factory import AgntcyFactory
 from agntcy_app_sdk.app_sessions import AppContainer
 from agntcy_app_sdk.semantic.a2a.protocol import A2AProtocol
 
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
 from config.config import FARM_AGENT_HOST, FARM_AGENT_PORT
 from config.config import DEFAULT_MESSAGE_TRANSPORT, TRANSPORT_SERVER_ENDPOINT
 from farm.agent_executor import FarmAgentExecutor

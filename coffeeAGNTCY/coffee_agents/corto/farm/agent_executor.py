@@ -16,6 +16,7 @@ from a2a.utils import (
     new_task,
 )
 from a2a.utils.errors import ServerError
+from ioa_observe.sdk.tracing import session_start
 
 from farm.agent import FarmAgent
 
@@ -74,6 +75,7 @@ class FarmAgentExecutor(AgentExecutor):
             ServerError: If an unexpected error occurs during flavor generation.
         """
 
+        session_start()  # Start a new tracing session for each prompt execution
         logger.info("Received message request: %s", context.message)
 
         validation_error = self._validate_request(context)

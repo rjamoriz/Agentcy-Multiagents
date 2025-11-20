@@ -8,6 +8,8 @@ services:
     environment:
       - FARM_AGENT_HOST=brazil-farm-server
       - FARM_AGENT_PORT=9999
+      - TRANSPORT_SERVER_ENDPOINT=http://slim-lungo:46357
+      - IDENTITY_AUTH_ENABLED=false
       - AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT:-}
       - AZURE_OPENAI_DEPLOYMENT=${AZURE_OPENAI_DEPLOYMENT:-}
       - AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY:-}
@@ -32,6 +34,8 @@ services:
     environment:
       - FARM_AGENT_HOST=colombia-farm-server
       - FARM_AGENT_PORT=9998
+      - TRANSPORT_SERVER_ENDPOINT=http://slim-lungo:46357
+      - IDENTITY_AUTH_ENABLED=false
       - AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT:-}
       - AZURE_OPENAI_DEPLOYMENT=${AZURE_OPENAI_DEPLOYMENT:-}
       - AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY:-}
@@ -45,7 +49,6 @@ services:
       - OTLP_HTTP_ENDPOINT=${OTLP_HTTP_ENDPOINT:-http://otel-collector:4318}
       - ENABLE_HTTP=true
       - LLM_STREAMING=${LLM_STREAMING:-}
-      - IDENTITY_AUTH_ENABLED=${IDENTITY_AUTH_ENABLED:-} # Disabled by default
       - IDENTITY_SERVICE_API_KEY=${IDENTITY_SERVICE_API_KEY_COLOMBIA_FARM:-dummy_api_key}
       - MCP_PAYMENT_SERVICE_URL=${MCP_PAYMENT_SERVICE_URL:-http://payment-mcp-server:8081/mcp}
     ports:
@@ -59,6 +62,8 @@ services:
     environment:
       - FARM_AGENT_HOST=vietnam-farm-server
       - FARM_AGENT_PORT=9997
+      - TRANSPORT_SERVER_ENDPOINT=http://slim-lungo:46357
+      - IDENTITY_AUTH_ENABLED=false
       - AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT:-}
       - AZURE_OPENAI_DEPLOYMENT=${AZURE_OPENAI_DEPLOYMENT:-}
       - AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY:-}
@@ -72,7 +77,6 @@ services:
       - OTLP_HTTP_ENDPOINT=${OTLP_HTTP_ENDPOINT:-http://otel-collector:4318}
       - ENABLE_HTTP=true
       - LLM_STREAMING=${LLM_STREAMING:-}
-      - IDENTITY_AUTH_ENABLED=${IDENTITY_AUTH_ENABLED:-} # Disabled by default
       - IDENTITY_SERVICE_API_KEY=${IDENTITY_SERVICE_API_KEY_VIETNAM_FARM:-dummy_api_key}
       - MCP_PAYMENT_SERVICE_URL=${MCP_PAYMENT_SERVICE_URL:-http://payment-mcp-server:8081/mcp}
     ports:
@@ -111,6 +115,7 @@ services:
     environment:
       - FARM_AGENT_HOST=farm-server
       - FARM_AGENT_PORT=9999
+      - TRANSPORT_SERVER_ENDPOINT=http://slim-lungo:46357
       - AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT:-}
       - AZURE_OPENAI_DEPLOYMENT=${AZURE_OPENAI_DEPLOYMENT:-}
       - AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY:-}
@@ -230,7 +235,7 @@ services:
     image: ghcr.io/agntcy/coffee-agntcy/logistic-shipper:latest
     environment:
       - DEFAULT_MESSAGE_TRANSPORT=SLIM # Do not change. SLIM is required for group conversation.
-      - TRANSPORT_SERVER_ENDPOINT=http://slim:46357
+      - TRANSPORT_SERVER_ENDPOINT=http://slim-lungo:46357
       - OTLP_HTTP_ENDPOINT=${OTLP_HTTP_ENDPOINT:-http://otel-collector:4318}
       - ENABLE_HTTP=true
     ports:
@@ -243,7 +248,7 @@ services:
     image: ghcr.io/agntcy/coffee-agntcy/logistic-accountant:latest
     environment:
       - DEFAULT_MESSAGE_TRANSPORT=SLIM # Do not change. SLIM is required for group conversation.
-      - TRANSPORT_SERVER_ENDPOINT=http://slim:46357
+      - TRANSPORT_SERVER_ENDPOINT=http://slim-lungo:46357
       - OTLP_HTTP_ENDPOINT=${OTLP_HTTP_ENDPOINT:-http://otel-collector:4318}
       - ENABLE_HTTP=true
     ports:
@@ -256,7 +261,7 @@ services:
     image: ghcr.io/agntcy/coffee-agntcy/logistic-farm:latest
     environment:
       - DEFAULT_MESSAGE_TRANSPORT=SLIM # Do not change. SLIM is required for group conversation.
-      - TRANSPORT_SERVER_ENDPOINT=http://slim:46357
+      - TRANSPORT_SERVER_ENDPOINT=http://slim-lungo:46357
       - OTLP_HTTP_ENDPOINT=${OTLP_HTTP_ENDPOINT:-http://otel-collector:4318}
       - ENABLE_HTTP=true
     ports:
@@ -269,7 +274,7 @@ services:
     image: ghcr.io/agntcy/coffee-agntcy/logistic-helpdesk:latest
     environment:
       - DEFAULT_MESSAGE_TRANSPORT=SLIM # Do not change. SLIM is required for group conversation.
-      - TRANSPORT_SERVER_ENDPOINT=http://slim:46357
+      - TRANSPORT_SERVER_ENDPOINT=http://slim-lungo:46357
       - OTLP_HTTP_ENDPOINT=${OTLP_HTTP_ENDPOINT:-http://otel-collector:4318}
       - ENABLE_HTTP=true
     ports:
@@ -281,6 +286,7 @@ services:
       dockerfile: coffeeAGNTCY/coffee_agents/lungo/docker/Dockerfile.logistic-supervisor
     image: ghcr.io/agntcy/coffee-agntcy/logistic-supervisor:latest
     environment:
+      - TRANSPORT_SERVER_ENDPOINT=http://slim-lungo:46357
       - AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT:-}
       - AZURE_OPENAI_DEPLOYMENT=${AZURE_OPENAI_DEPLOYMENT:-}
       - AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY:-}
@@ -290,7 +296,6 @@ services:
       - OPENAI_MODEL_NAME=${OPENAI_MODEL_NAME:-}
       - LLM_PROVIDER=${LLM_PROVIDER}
       - DEFAULT_MESSAGE_TRANSPORT=SLIM # Do not change. SLIM is required for group conversation.
-      - TRANSPORT_SERVER_ENDPOINT=http://slim:46357
       - OTLP_HTTP_ENDPOINT=${OTLP_HTTP_ENDPOINT:-http://otel-collector:4318}
       - LLM_STREAMING=${LLM_STREAMING:-}
     ports:

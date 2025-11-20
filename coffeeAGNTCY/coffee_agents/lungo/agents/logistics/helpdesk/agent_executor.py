@@ -6,6 +6,8 @@ import re
 from datetime import datetime, timezone
 from typing import Optional
 
+from ioa_observe.sdk.tracing import session_start
+
 from a2a.server.agent_execution import AgentExecutor, RequestContext
 from a2a.server.events import EventQueue
 from a2a.types import Task, UnsupportedOperationError
@@ -125,6 +127,7 @@ class HelpdeskAgentExecutor(AgentExecutor):
         """
         Execute a single agent invocation and enqueue textual result.
         """
+        session_start()
         result = await self.agent.invoke(context)
         await event_queue.enqueue_event(new_agent_text_message(result))
 

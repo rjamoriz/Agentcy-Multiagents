@@ -4,7 +4,7 @@
 import logging
 from uuid import uuid4
 
-from ioa_observe.sdk.decorators import agent
+from ioa_observe.sdk.decorators import agent, tool
 from agntcy_app_sdk.factory import AgntcyFactory
 from agntcy_app_sdk.semantic.a2a.protocol import A2AProtocol
 from config.config import DEFAULT_MESSAGE_TRANSPORT, TRANSPORT_SERVER_ENDPOINT
@@ -91,6 +91,7 @@ class ExchangeAgent:
             logger.info("No tool called - LLM responded directly")
             return response.content
 
+    @tool(name="a2a_client_send_message", description="Sends messages to farm agent via A2A protocol for coffee flavor analysis")
     async def a2a_client_send_message(self, prompt: str):
         """
         Send the user-provided prompt to the farm agent over A2A transport and
